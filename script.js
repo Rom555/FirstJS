@@ -1,10 +1,21 @@
-const title = "Работа с гит";
-const screens = [123, 12, 1];
+const title = "FirstJS";
+const screens = "Простые, Сложные, Интерактивные";
 const screenPrice = 12000;
-const rollback = "возврат";
+const rollback = 55;
 const fullPrice = 24000;
-const adaptive = "адаптив";
+const adaptive = true;
 
-alert("Первая работа с гит");
+console.log("title имеет тип данных " + typeof title);
+console.log("fullPrice имеет тип данных " + typeof fullPrice);
+console.log("adaptive имеет тип данных " + typeof adaptive);
 
-console.log("Работа с гит");
+console.log("screens имеет длину " + screens.length);
+
+console.log("Стоимость верстки экранов " + screenPrice + " рублей");
+console.log("Стоимость разработки сайта " + fullPrice + " рублей");
+
+console.log(screens.toLowerCase().split(", "));
+
+console.log(
+  "Процент отката посреднику за работу " + (fullPrice * rollback) / 100
+);
