@@ -61,7 +61,6 @@ showTypeOf(adaptive);
 console.log(screens.toLowerCase().split(", "));
 
 console.log(getRollbackMessage());
-g;
 
 console.log(
   "Итоговая стоимость за вычетом отката посреднику " + servicePercentPrice
