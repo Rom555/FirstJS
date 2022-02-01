@@ -18,14 +18,20 @@ const showTypeOf = function (variable) {
 };
 
 const getAllServicePrices = function () {
-  return servicePrice1 + servicePrice2;
+  let sum = 0;
+
+  for (let argument of arguments) {
+    sum += argument;
+  }
+
+  return sum;
 };
 
-function getFullPrice() {
+function getFullPrice(screenPrice, allServicePrices) {
   return screenPrice + allServicePrices;
 }
 
-const getTitle = function () {
+const getTitle = function (title) {
   let trimmedTitle = title.trim();
 
   return (
@@ -33,7 +39,7 @@ const getTitle = function () {
   );
 };
 
-const getServicePercentPrices = function () {
+const getServicePercentPrices = function (fullPrice, rollback) {
   return Math.ceil(fullPrice - fullPrice * (rollback / 100));
 };
 
@@ -50,17 +56,17 @@ const getRollbackMessage = function (price) {
   }
 };
 
-allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice();
-servicePercentPrice = getServicePercentPrices();
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+fullPrice = getFullPrice(screenPrice, allServicePrices);
+servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
-showTypeOf(getTitle());
+showTypeOf(getTitle(title));
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
 console.log(screens.toLowerCase().split(", "));
 
-console.log(getRollbackMessage());
+console.log(getRollbackMessage(fullPrice));
 
 console.log(
   "Итоговая стоимость за вычетом отката посреднику " + servicePercentPrice
