@@ -1,27 +1,62 @@
 "use strict";
 
-let title = prompt("Как называется ваш проект?");
-let screens = prompt("Какие типы экранов нужно разработать?");
-let screenPrice = +prompt("Сколько будет стоить данная работа?");
-let adaptive = confirm("Нужен ли адаптив на сайте?");
-let service1 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice1 = +prompt("Сколько это будет стоить?");
-let service2 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice2 = +prompt("Сколько это будет стоить?");
+let title;
+let screens;
+let screenPrice;
+let adaptive;
+let service1;
+let servicePrice1;
+let service2;
+let servicePrice2;
+let allServicePrices;
+let fullPrice;
+let servicePercentPrice;
+
+let services = [];
 
 const rollback = 55;
 
-let allServicePrices, fullPrice, servicePercentPrice;
+const isNumber = function (num) {
+  return isNaN(parseInt(num)) || !isFinite(num);
+};
+
+const getNumber = function (str, value) {
+  let num;
+
+  do {
+    num = prompt(str, value);
+  } while (isNumber(num));
+
+  return +num;
+};
+
+const asking = function () {
+  title = prompt("Как называется ваш проект?", " КальКулятор верСтки");
+  screens = prompt("Какие типы экранов нужно разработать?", "Простой, сложный");
+  screenPrice = getNumber("Сколько будет стоить данная работа?");
+  adaptive = confirm("Нужен ли адаптив на сайте?");
+};
 
 const showTypeOf = function (variable) {
   console.log(variable, typeof variable);
 };
 
-const getAllServicePrices = function () {
+const getAllServicePrices = function (services) {
   let sum = 0;
 
-  for (let argument of arguments) {
-    sum += argument;
+  while (true) {
+    let str = prompt(
+      "Какой дополнительный тип услуги нужен? (оставьте пустой или нажмите отмена если больше не нужны)"
+    );
+
+    if (str === "" || str === null) {
+      break;
+    }
+
+    let value = getNumber("Сколько это будет стоить?");
+
+    services.push([str, value]);
+    sum += value;
   }
 
   return sum;
@@ -56,7 +91,9 @@ const getRollbackMessage = function (price) {
   }
 };
 
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+asking();
+
+allServicePrices = getAllServicePrices(services);
 fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
