@@ -4,10 +4,6 @@ let title;
 let screens;
 let screenPrice;
 let adaptive;
-let service1;
-let servicePrice1;
-let service2;
-let servicePrice2;
 let allServicePrices;
 let fullPrice;
 let servicePercentPrice;
@@ -17,7 +13,7 @@ let services = [];
 const rollback = 55;
 
 const isNumber = function (num) {
-  return isNaN(parseInt(num)) || !isFinite(num);
+  return !isNaN(parseInt(num)) && isFinite(num);
 };
 
 const getNumber = function (str, value) {
@@ -25,7 +21,7 @@ const getNumber = function (str, value) {
 
   do {
     num = prompt(str, value);
-  } while (isNumber(num));
+  } while (!isNumber(num));
 
   return +num;
 };
@@ -41,7 +37,7 @@ const showTypeOf = function (variable) {
   console.log(variable, typeof variable);
 };
 
-const getAllServicePrices = function (services) {
+const getAllServicePrices = function () {
   let sum = 0;
 
   while (true) {
@@ -93,7 +89,7 @@ const getRollbackMessage = function (price) {
 
 asking();
 
-allServicePrices = getAllServicePrices(services);
+allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
