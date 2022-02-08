@@ -1,5 +1,28 @@
 "use strict";
 
+const title = document.getElementsByTagName("h1")[0];
+
+const btnCollection = document.getElementsByClassName("handler_btn");
+const btncalculate = btnCollection[0];
+const btnReset = btnCollection[1];
+
+const btnAdd = document.querySelector(".screen-btn");
+
+const otherItemsPercent = document.querySelectorAll(".other-items.percent");
+const otherItemsNumber = document.querySelectorAll(".other-items.number ");
+
+const range = document.querySelector(".rollback input[type=range]");
+const rangeValue = document.querySelector(".rollback span.range-value");
+
+const totalInputs = document.getElementsByClassName("total-input");
+const totalInput1 = totalInputs[0];
+const totalInput2 = totalInputs[1];
+const totalInput3 = totalInputs[2];
+const totalInput4 = totalInputs[3];
+const totalInput5 = totalInputs[4];
+
+let screens = document.querySelectorAll(".screen");
+
 const isNumber = function (num) {
   return !isNaN(parseInt(num)) && isFinite(num);
 };
@@ -145,7 +168,6 @@ const appData = {
     appData.getFullPrice();
     appData.getServicePercentPrices();
     appData.getTitle();
-
     appData.getRollbackMessage();
 
     appData.logger();
